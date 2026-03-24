@@ -116,6 +116,8 @@ func (vI *versionInfoType) String() string {
 	)
 }
 
+var Whome bool
+
 // Initialises a global, pre-defined versionInfo variable (we might just need one).
 // Panics if allocation failed!
 func init() {
@@ -123,6 +125,7 @@ func init() {
 	if versionInfo, err = initVersionInfo(); err != nil {
 		panic(err)
 	}
+	Whome = true
 }
 
 // Singleton getters.
