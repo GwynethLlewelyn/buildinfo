@@ -105,7 +105,7 @@ func (vI *versionInfoType) String() string {
 	}
 
 	return fmt.Sprintf(
-		"\t%s\n\t(rev %s)\n\t[%s %s %s]\n\tBuilt on %s%s",
+		"\r\t%s\n\t(rev %s)\n\t[%s %s %s]\n\tBuilt on %s%s",
 		vI.version,
 		vI.commit,
 		vI.goOS,
@@ -116,8 +116,6 @@ func (vI *versionInfoType) String() string {
 	)
 }
 
-var Whome bool
-
 // Initialises a global, pre-defined versionInfo variable (we might just need one).
 // Panics if allocation failed!
 func init() {
@@ -125,7 +123,6 @@ func init() {
 	if versionInfo, err = initVersionInfo(); err != nil {
 		panic(err)
 	}
-	Whome = true
 }
 
 // Singleton getters.
