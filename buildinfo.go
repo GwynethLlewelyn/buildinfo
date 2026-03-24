@@ -30,9 +30,9 @@ type versionInfoType struct {
 // during build time, e.g. `go build -ldflags "-X main.TheBuilder=gwyneth"` (gwyneth 20231103)
 
 var (
-	versionInfo *versionInfoType // cached values for this build.
-	TheBuilder  string           // to be overwritten via the linker command `go build -ldflags "-X main.TheBuilder=gwyneth"`.
-	TheVersion  string           // to be overwritten with -X main.TheVersion=X.Y.Z, as above.
+	versionInfo *versionInfoType // Cached values for this build.
+	TheBuilder  string           // To be overwritten via the linker command `go build -ldflags "-X main.TheBuilder=gwyneth"`.
+	TheVersion  string           // To be overwritten with `-X main.TheVersion=X.Y.Z`, as above.
 )
 
 // Initialises a versionInfo variable.
@@ -123,4 +123,56 @@ func init() {
 	if versionInfo, err = initVersionInfo(); err != nil {
 		panic(err)
 	}
+}
+
+// Singleton getters.
+
+// Runtime version.
+func Version() string {
+	return versionInfo.version
+}
+
+// Commit revision number.
+func Commit() string {
+	return versionInfo.commit
+}
+
+// Commit revision time (as a RFC3339 string).
+func DateString() string {
+	return versionInfo.dateString
+}
+
+// Same as before, converted to a time.Time, because that's what the cli package uses.
+func Date() time.Time {
+	return versionInfo.date
+}
+
+// User who built this (see note).
+func BuiltBy() string {
+	return versionInfo.builtBy
+}
+
+// Operating system for this build (from runtime).
+func GoOS() string {
+	return versionInfo.goOS
+}
+
+// Architecture, i.e., CPU type (from runtime).
+func GoARCH() string {
+	return versionInfo.goARCH
+}
+
+// Go version used to compile this build (from runtime).
+func GoVersion() string {
+	return versionInfo.goVersion
+}
+
+// Have we already initialised the cache object?
+func IsInit() bool {
+	return versionInfo.init
+}
+
+// Return everything pretty-printed for the singleton.
+func String() string {
+	return versionInfo.String()
 }
