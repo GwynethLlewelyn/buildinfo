@@ -1,5 +1,5 @@
 // Buildinfo includes some functions to return information from the built executable,
-// such as version, Git commit, architcture, etc.
+// such as version, Git commit, architecture, etc.
 //
 // © 2026 Gwyneth Llewelyn <gwyneth.llewelyn@gwynethllewelyn.net>
 // Freely distributed and released under a MIT licence.
